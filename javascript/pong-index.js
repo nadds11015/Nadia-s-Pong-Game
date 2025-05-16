@@ -184,6 +184,12 @@ function updateBall() {
       //only count the score if the other paddle has hit
       if (paddleLeft.hasHit) {
         leftScore += 1;
+         // Increase ball speed every 2 points for left player
+      if (leftScore > 0 && leftScore % 2 === 0) {
+          ball.direction.x *= 1.1;
+          ball.direction.y *= 1.1;
+         }
+        
         scoreDisplayUpdate();
         leftScoreHit.turnOn();
         paddleLeft.hasHit = false;
@@ -217,9 +223,16 @@ function updateBall() {
       //only count the score if the other paddle has hit
       if (paddleRight.hasHit) {
         rightScore += 1;
+        // Increase ball speed every 2 points for right player
+      if (rightScore > 0 && rightScore % 2 === 0) {
+       ball.direction.x *= 1.1;
+         ball.direction.y *= 1.1;
+      }
+        
         scoreDisplayUpdate();
         rightScoreHit.turnOn();
         paddleRight.hasHit = false;
+              
       } else {
         ballHitWall.turnOn();
       }

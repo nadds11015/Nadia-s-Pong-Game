@@ -62,7 +62,7 @@ paddlesReset();
 
 //STARTUP EVENTS
 ambientSound.play();
-ambientSound.player.playbackRate = 1;
+ambientSound.player.playbackRate = 1; // sets normal speed
 
 //RUNNING PROCESSES (updated every frame of the game)
 function gameProcess() {

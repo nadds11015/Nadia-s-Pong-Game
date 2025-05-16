@@ -186,8 +186,8 @@ function updateBall() {
         leftScore += 1;
          // Increase ball speed every 2 points for left player
       if (leftScore > 0 && leftScore % 2 === 0) {
-          ball.direction.x *= 1.2;
-          ball.direction.y *= 1.2;
+          ball.direction.x *= 1.5;
+          ball.direction.y *= 1.5;
          }
         
         scoreDisplayUpdate();
@@ -225,8 +225,8 @@ function updateBall() {
         rightScore += 1;
         // Increase ball speed every 2 points for right player
       if (rightScore > 0 && rightScore % 2 === 0) {
-       ball.direction.x *= 1.2;
-         ball.direction.y *= 1.2;
+       ball.direction.x *= 1.5;
+         ball.direction.y *= 1.5;
       }
         
         scoreDisplayUpdate();

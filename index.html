@@ -5,7 +5,7 @@
     <script src="./javascript/Tone.js"></script>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./pong-styles.css" />
-    <link rel="shortcut icon" href="./icon.png">
+    <link rel="shortcut icon" href="./bumpincat.gif">
 
   </head>
 
@@ -48,6 +48,14 @@
       DEBUG:<br/>
       <p id="debug"></p>
     </div>
+    <label for="speed-mode" style="display:block;text-align:center;margin-top:10px;">
+      Ball Speed Mode:
+      <select id="speed-mode">
+        <option value="constant">Constant</option>
+        <option value="linear">Linear</option>
+        <option value="exponential">Exponential</option>
+      </select>
+    </label>
     <script type="module" src="./javascript/pong-audio.js"></script>
     <script type="module" src="./javascript/pong-classes.js"></script>
     <script type="module" src="./javascript/pong-events.js"></script>

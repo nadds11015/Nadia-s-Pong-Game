@@ -139,7 +139,7 @@ var computerDirectionOld = 0; //computer control paddle direction storage
 //Ball speed mode: 'constant', 'linear', or 'exponential'
 let ballSpeedMode = 'constant';
 let linearSpeedIncrement = 1; // pixels per bounce
-let exponentialSpeedFactor = 1.15; // 15% faster per bounce
+let exponentialSpeedFactor = 1.3; // 15% faster per bounce
 
 // Listen for dropdown changes
 const speedModeDropdown = document.getElementById('speed-mode');
@@ -478,3 +478,11 @@ function setVolume(x) {
   if (!game.mute)
     Tone.Master.volume.value = scalerange(game.volume, 0, 10, -40, 0); //scale to dB
 }
+
+// --- Background color beat effect ---
+const beatColors = ['#ffb347', '#47b8ff', '#b6ff47', '#ff47c6', '#fff347', '#47ffb6'];
+let beatColorIndex = 0;
+setInterval(() => {
+  document.body.style.backgroundColor = beatColors[beatColorIndex];
+  beatColorIndex = (beatColorIndex + 1) % beatColors.length;
+}, 400); // 150 BPM = 400ms per beat

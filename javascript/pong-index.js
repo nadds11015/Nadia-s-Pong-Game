@@ -136,6 +136,40 @@ var rightScore = 0;
 var computerDirection = 0; //computer control paddle direction
 var computerDirectionOld = 0; //computer control paddle direction storage
 
+//Ball speed mode: 'constant', 'linear', or 'exponential'
+let ballSpeedMode = 'constant';
+let linearSpeedIncrement = 1; // pixels per bounce
+let exponentialSpeedFactor = 1.15; // 15% faster per bounce
+
+// Listen for dropdown changes
+const speedModeDropdown = document.getElementById('speed-mode');
+if (speedModeDropdown) {
+  speedModeDropdown.addEventListener('change', function() {
+    ballSpeedMode = this.value;
+    this.blur(); // Remove focus so arrows don't affect dropdown
+  });
+  speedModeDropdown.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault(); // Prevent arrow keys from changing selection
+    }
+  });
+}
+
+function applyBallSpeedMode() {
+  if (ballSpeedMode === 'linear') {
+    // Increase speed linearly
+    if (ball.direction.x > 0) ball.direction.x += linearSpeedIncrement;
+    else ball.direction.x -= linearSpeedIncrement;
+    if (ball.direction.y > 0) ball.direction.y += linearSpeedIncrement;
+    else ball.direction.y -= linearSpeedIncrement;
+  } else if (ballSpeedMode === 'exponential') {
+    // Increase speed exponentially
+    ball.direction.x *= exponentialSpeedFactor;
+    ball.direction.y *= exponentialSpeedFactor;
+  }
+  // 'constant' does nothing
+}
+
 //Main Update Loop
 var update = function() {
   try {
@@ -184,12 +218,6 @@ function updateBall() {
       //only count the score if the other paddle has hit
       if (paddleLeft.hasHit) {
         leftScore += 1;
-         // Increase ball speed every 2 points for left player
-      if (leftScore > 0 && leftScore % 2 === 0) {
-          ball.direction.x *= 1.5;
-          ball.direction.y *= 1.5;
-         }
-        
         scoreDisplayUpdate();
         leftScoreHit.turnOn();
         paddleLeft.hasHit = false;
@@ -199,15 +227,18 @@ function updateBall() {
       ball.position.x = game.size.x - game.padding.x;
       ball.direction.x = ball.initial.x * -1; //reset ball speed
       ball.direction.y = ball.initial.y;
+      // DO NOT call applyBallSpeedMode() here
     } else {
       ballHitPaddle.turnOn();
       paddleRight.hasHit = true;
+      applyBallSpeedMode(); // Only speed up on paddle bounce
     }
   }
   //Bottom Wall
   if (newBallPos.y + ball.size.y > game.size.y - game.padding.y) {
     ball.direction.y = -Math.abs(ball.direction.y);
     ballHitWall.turnOn();
+    applyBallSpeedMode(); // Only speed up on wall bounce
   }
   //Left Wall
   if (newBallPos.x < game.padding.x) {
@@ -223,31 +254,27 @@ function updateBall() {
       //only count the score if the other paddle has hit
       if (paddleRight.hasHit) {
         rightScore += 1;
-        // Increase ball speed every 2 points for right player
-      if (rightScore > 0 && rightScore % 2 === 0) {
-       ball.direction.x *= 1.5;
-         ball.direction.y *= 1.5;
-      }
-        
         scoreDisplayUpdate();
         rightScoreHit.turnOn();
         paddleRight.hasHit = false;
-              
       } else {
         ballHitWall.turnOn();
       }
       ball.position.x = game.padding.x;
       ball.direction.x = ball.initial.x; //reset ball speed
       ball.direction.y = ball.initial.y;
+      // DO NOT call applyBallSpeedMode() here
     } else {
       ballHitPaddle.turnOn();
       paddleLeft.hasHit = true;
+      applyBallSpeedMode(); // Only speed up on paddle bounce
     }
   }
   //Top Wall
   if (newBallPos.y < game.padding.y) {
     ball.direction.y = Math.abs(ball.direction.y);
     ballHitWall.turnOn();
+    applyBallSpeedMode(); // Only speed up on wall bounce
   }
   //Move Ball
   ball.position.x = newBallPos.x;

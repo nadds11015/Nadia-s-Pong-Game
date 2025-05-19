@@ -137,8 +137,7 @@ var computerDirection = 0; //computer control paddle direction
 var computerDirectionOld = 0; //computer control paddle direction storage
 
 //Ball speed mode: 'constant', 'linear', or 'exponential'
-let ballSpeedMode = 'constant';
-let linearSpeedIncrement = 1; // pixels per bounce
+
 let exponentialSpeedFactor = 1.15; // 15% faster per bounce
 
 // Listen for dropdown changes

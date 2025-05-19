@@ -260,7 +260,6 @@ function updateBall() {
   if (newBallPos.y < game.padding.y) {
     ball.direction.y = Math.abs(ball.direction.y);
     ballHitWall.turnOn();
-        applyBallSpeedMode(); // Only speed up on wall bounce
 
   }
   //Move Ball

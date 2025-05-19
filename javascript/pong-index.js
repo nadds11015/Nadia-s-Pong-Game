@@ -136,7 +136,6 @@ var rightScore = 0;
 var computerDirection = 0; //computer control paddle direction
 var computerDirectionOld = 0; //computer control paddle direction storage
 
-
 //Main Update Loop
 var update = function() {
   try {
@@ -185,8 +184,7 @@ function updateBall() {
       //only count the score if the other paddle has hit
       if (paddleLeft.hasHit) {
         leftScore += 1;
-
-   // Increase ball speed every 2 points for left player
+         // Increase ball speed every 2 points for left player
       if (leftScore > 0 && leftScore % 2 === 0) {
           ball.direction.x *= 1.5;
           ball.direction.y *= 1.5;
@@ -194,9 +192,7 @@ function updateBall() {
         
         scoreDisplayUpdate();
         leftScoreHit.turnOn();
-        
         paddleLeft.hasHit = false;
-        
       } else {
         ballHitWall.turnOn();
       }
@@ -206,16 +202,12 @@ function updateBall() {
     } else {
       ballHitPaddle.turnOn();
       paddleRight.hasHit = true;
-       applyBallSpeedMode(); // Only speed up on paddle bounce
-
     }
   }
   //Bottom Wall
   if (newBallPos.y + ball.size.y > game.size.y - game.padding.y) {
     ball.direction.y = -Math.abs(ball.direction.y);
     ballHitWall.turnOn();
-    applyBallSpeedMode(); // Only speed up on wall bounce
-
   }
   //Left Wall
   if (newBallPos.x < game.padding.x) {
@@ -231,13 +223,11 @@ function updateBall() {
       //only count the score if the other paddle has hit
       if (paddleRight.hasHit) {
         rightScore += 1;
-
-          // Increase ball speed every 2 points for right player
+        // Increase ball speed every 2 points for right player
       if (rightScore > 0 && rightScore % 2 === 0) {
        ball.direction.x *= 1.5;
          ball.direction.y *= 1.5;
       }
-
         
         scoreDisplayUpdate();
         rightScoreHit.turnOn();
@@ -252,15 +242,12 @@ function updateBall() {
     } else {
       ballHitPaddle.turnOn();
       paddleLeft.hasHit = true;
-            applyBallSpeedMode(); // Only speed up on paddle bounce
-
     }
   }
   //Top Wall
   if (newBallPos.y < game.padding.y) {
     ball.direction.y = Math.abs(ball.direction.y);
     ballHitWall.turnOn();
-
   }
   //Move Ball
   ball.position.x = newBallPos.x;

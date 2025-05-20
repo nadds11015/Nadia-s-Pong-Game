@@ -155,6 +155,10 @@ var update = function() {
   }
 };
 
+let ballSpeedMode = 'constant';
+let linearSpeedIncrement = 1; // pixels per bounce
+let exponentialSpeedFactor = 1.3; // 15% faster per bounce
+
 var run = setInterval(update, updateInterval); // this is the master update interval
 
 function scoreDisplayUpdate() {

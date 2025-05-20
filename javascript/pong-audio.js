@@ -48,7 +48,7 @@ soundArray.push(wallSound); //add sound to list of sounds
 
 export var paddleSound = new soundFile("silence.mp3");
 soundArray.push(paddleSound);
-paddleSound.player.volume.value = 0; //set to normal (default/max) volume 
+paddleSound.player.volume.value = 10; //set to normal (default/max) volume 
 
 export var scoreSound = new soundFile("silence.mp3");
 soundArray.push(scoreSound);

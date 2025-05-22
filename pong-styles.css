@@ -8,7 +8,7 @@ body {
   padding: 0;
   margin: 0;
 }
-<center>
+
 #game {
   margin: 4px;
   border: 5px solid black;
@@ -99,4 +99,4 @@ body {
 #right-score {
   right: 1%;
 }
-</center>
+

@@ -46,7 +46,7 @@ export var soundArray = []; //list of sounds loaded
 export var wallSound = new soundFile("silence.mp3"); //load sound
 soundArray.push(wallSound); //add sound to list of sounds
 
-export var paddleSound = new soundFile("paddle.mp3");
+export var paddleSound = new soundFile("laser.mp3");
 soundArray.push(paddleSound);
 paddleSound.player.volume.value = 10; //set to normal (default/max) volume 
 
